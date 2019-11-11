@@ -43,11 +43,11 @@ export function activate(context: ExtensionContext) {
 	let clientOptions: LanguageClientOptions = {
 		// Register the server for on disk and newly created YAML documents
 		documentSelector: [
-			{ language: 'yaml' }
+			{ language: 'yaml-ansible' }
 		],
 		synchronize: {
 			// Synchronize these setting sections with the server
-			configurationSection: ['yaml', 'http.proxy', 'http.proxyStrictSSL'],
+			configurationSection: ['yaml-ansible', 'http.proxy', 'http.proxyStrictSSL'],
 			// Notify the server about file changes to YAML and JSON files contained in the workspace
 			fileEvents: [
 				workspace.createFileSystemWatcher('**/*.?(e)y?(a)ml'),
@@ -57,7 +57,7 @@ export function activate(context: ExtensionContext) {
 	};
 
 	// Create the language client and start it
-	let client = new LanguageClient('yaml', 'YAML Support', serverOptions, clientOptions);
+	let client = new LanguageClient('yaml-ansible', 'YAML Ansible Support', serverOptions, clientOptions);
 	let disposable = client.start();
 
 	// Push the disposable to the context's subscriptions so that the
